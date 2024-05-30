@@ -8,4 +8,16 @@ pipeline{
             }
         }
     }
+
+    post{
+        always{
+            echo "i will always run"
+        }
+        success{
+            echo "yes, success"
+        }
+        failure{
+            echo "oh no, failure"
+        }
+    }
 }
