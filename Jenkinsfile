@@ -5,7 +5,7 @@ pipeline{
         stage('Build'){
             steps{
                 echo 'start build'
-                sh("chomod +x mvnw")
+                sh("chmod +x mvnw")
                 sh("./mvnw clean compile test-compile")
             }
         }
