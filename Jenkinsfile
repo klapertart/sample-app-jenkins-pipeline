@@ -2,28 +2,28 @@ pipeline{
     agent any
 
     stages{
-        stage('Prepare'){
+        stage("Prepare"){
             steps{
-                echo 'Start Job: ${env.JOB_NAME}'
-                echo 'Start Build: ${env.BUILD_NUMBER}'
-                echo 'Branch Name: ${env.BRANCH_NAME}'
+                echo "Start Job: ${env.JOB_NAME}"
+                echo "Start Build: ${env.BUILD_NUMBER}"
+                echo "Branch Name: ${env.BRANCH_NAME}"
             }
         }
-        stage('Build'){
+        stage("Build"){
             steps{
-                echo 'start build'
+                echo "start build"
                 sh("chmod +x mvnw")
                 sh("./mvnw clean compile test-compile")
             }
         }
-        stage('Test'){
+        stage("Test"){
             steps{
-                echo 'stage test'
+                echo "stage test"
             }
         }
-        stage('Deploy'){
+        stage("Deploy"){
             steps{
-                echo 'stage deploy'
+                echo "stage deploy"
             }
         }
     }
