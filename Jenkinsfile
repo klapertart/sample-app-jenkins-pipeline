@@ -2,12 +2,15 @@ pipeline{
     agent any
     environment{
         AUTHOR = "Otong Sunandar"
+        APP = credentials("otong123")
     }
 
     stages{
         stage("Prepare"){
             steps{
                 echo "Author: ${AUTHOR}"
+                echo "App User: ${APP_USR}"
+                echo "App Password: ${APP_PSW}"
                 echo "Start Job: ${env.JOB_NAME}"
                 echo "Start Build: ${env.BUILD_NUMBER}"
                 echo "Branch Name: ${env.BRANCH_NAME}"
