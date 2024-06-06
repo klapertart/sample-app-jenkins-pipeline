@@ -5,10 +5,10 @@ pipeline{
         APP = credentials("otong123")
     }
 
-    triggers{
+//     triggers{
 //         cron("* */1 * * *")
-        //pollSCM("*/5 * * * *")
-    }
+//         //pollSCM("*/5 * * * *")
+//     }
 
     parameters{
         string(name: "NAME", defaultValue: "Guest", description: "What is your name")
