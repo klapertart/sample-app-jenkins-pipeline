@@ -61,6 +61,7 @@ pipeline{
             }
             steps{
                 echo "stage deploy"
+                echo "Deploy to ${TARGET_ENV}"
             }
         }
     }
