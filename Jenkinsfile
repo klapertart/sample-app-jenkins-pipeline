@@ -8,14 +8,12 @@ pipeline {
     stages {
         stage('Prepare Release') {
             steps {
-                    sh 'mvn release:prepare'
-                }
+                sh 'mvn release:prepare'
             }
         }
         stage('Perform Release') {
             steps {
-                    sh 'mvn release:perform'
-                }
+                sh 'mvn release:perform'
             }
         }
     }
