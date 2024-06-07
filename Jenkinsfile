@@ -8,19 +8,13 @@ pipeline {
     stages {
         stage('Prepare Release') {
             steps {
-                script {
-                    withMaven(maven: '3.6.3') {
-                        sh 'mvn release:prepare'
-                    }
+                    sh 'mvn release:prepare'
                 }
             }
         }
         stage('Perform Release') {
             steps {
-                script {
-                    withMaven(maven: '3.6.3') {
-                        sh 'mvn release:perform'
-                    }
+                    sh 'mvn release:perform'
                 }
             }
         }
