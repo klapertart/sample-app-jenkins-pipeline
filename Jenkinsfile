@@ -6,6 +6,11 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/klapertart/sample-app-maven-release.git', branch: 'prod'
+            }
+        }
         stage('Prepare Release') {
             steps {
                 sh 'mvn release:prepare'
