@@ -19,6 +19,22 @@ pipeline{
     }
 
     stages{
+
+        stage("Preparation"){
+            stages{
+                stage("Prepare Jave"){
+                    steps{
+                        echo "Prepare Jave"
+                    }
+                }
+                stage("Prepare Maven"){
+                    steps{
+                        echo "Prepare Maven"
+                    }
+                }
+            }
+        }
+
         stage("Params"){
             steps{
                 echo "Hello: ${params.NAME}"
