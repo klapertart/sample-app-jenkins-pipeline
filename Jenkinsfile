@@ -18,7 +18,7 @@ pipeline {
         stage('Perform Release') {
             steps {
                 script {
-                    withMaven(maven: 'Maven 3.x') {
+                    withMaven(maven: 'Maven 3.6.3') {
                         sh 'mvn release:perform'
                     }
                 }
