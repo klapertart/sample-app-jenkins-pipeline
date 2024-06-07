@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.x' // Ensure this matches the Maven tool name configured in Jenkins
+        maven 'Maven 3.6.3' // Ensure this matches the Maven tool name configured in Jenkins
     }
 
     stages {
         stage('Prepare Release') {
             steps {
                 script {
-                    withMaven(maven: 'Maven 3.x') {
+                    withMaven(maven: 'Maven 3.6.3') {
                         sh 'mvn release:prepare'
                     }
                 }
