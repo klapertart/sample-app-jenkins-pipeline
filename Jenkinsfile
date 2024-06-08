@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-     environment {
-        GIT_CREDENTIALS = credentials('klapertart')
-    }
-
     tools {
         maven '3.6.3' // Ensure this matches the Maven tool name configured in Jenkins
     }
