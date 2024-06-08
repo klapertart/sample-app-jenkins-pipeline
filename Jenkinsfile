@@ -43,7 +43,7 @@ pipeline {
                 sh 'mvn release:perform -Dusername=klapertart -Dpassword=0DTH@nksunandar'
             }
         }
-        stage('Genereate Changelot') {
+        stage('Genereate Changelog') {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
@@ -51,6 +51,7 @@ pipeline {
                             mvn generate-resources
                             git add .
                             git commit -m "docs: update changelog"
+                            git push origin master
                         '''
                     }
                 }
