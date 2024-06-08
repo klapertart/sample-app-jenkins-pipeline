@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+            // This will fetch the GitHub token from Jenkins credentials
+            GITHUB_TOKEN = credentials('github-token')
+        }
+
 
     tools {
         maven '3.6.3' // Ensure this matches the Maven tool name configured in Jenkins
