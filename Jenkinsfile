@@ -23,12 +23,12 @@ pipeline {
         }
         stage('Prepare Release') {
             steps {
-                sh 'mvn release:prepare -Dusername=klapertart -Dpassword=0DTH@nksun4nd4r'
+                sh 'mvn release:prepare'
             }
         }
         stage('Perform Release') {
             steps {
-                sh 'mvn release:perform  -Dusername=klapertart -Dpassword=0DTH@nksun4nd4r'
+                sh 'mvn release:perform'
             }
         }
     }
