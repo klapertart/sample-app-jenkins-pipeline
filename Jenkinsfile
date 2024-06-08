@@ -30,11 +30,11 @@ pipeline {
         stage('Prepare Release') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'github-basicauth', passwordVariable: '0DTH@nksunandar', usernameVariable: 'klapertart')]) {
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         // Use Maven release plugin
-                        sh '''
-                            mvn release:prepare -Dusername=klapertart -Dpassword=0DTH@nksunandar
-                        '''
+                        sh """
+                            mvn release:prepare -Dusername=klapertart -Dpassword=${GITHUB_TOKEN}
+                        """
                     }
                 }
                 //sh 'mvn release:prepare -Dusername=klapertart -Dpassword=0DTH@nksunandar'
