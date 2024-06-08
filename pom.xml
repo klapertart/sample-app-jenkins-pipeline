@@ -160,9 +160,9 @@
 	</build>
 
 	<scm>
-		<url>https://github.com/klapertart/sample-app-maven-release.git</url> <!-- URL HTTP de clone do projeto -->
-		<connection>scm:git:https://github.com/klapertart/sample-app-maven-release.git</connection> <!-- URL HTTP de clone do projeto -->
-		<developerConnection>scm:git:https://github.com/klapertart/sample-app-maven-release.git</developerConnection> <!-- URL HTTP de clone do projeto -->
+		<url>https://github.com/klapertart/sample-app-jenkins-pipeline.git</url> <!-- URL HTTP de clone do projeto -->
+		<connection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</connection> <!-- URL HTTP de clone do projeto -->
+		<developerConnection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</developerConnection> <!-- URL HTTP de clone do projeto -->
 		<tag>0.0.4</tag>
 	</scm>
 
