@@ -8,17 +8,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/klapertart/sample-app-maven-release.git', branch: 'master'
+                git url: 'https://github.com/klapertart/sample-app-maven-release.git', branch: 'master', credentialsId: 'github-klapertart'
+            }
+        }
+        stage('Clean Release Before') {
+            steps {
+                sh 'mvn release:clean'
             }
         }
         stage('Prepare Release') {
             steps {
-                sh 'mvn release:prepare -Dusername=klapertart -Dpassword=0DTH@nksun4nd4r'
+                sh 'mvn release:prepare'
             }
         }
         stage('Perform Release') {
             steps {
-                sh 'mvn release:perform  -Dusername=klapertart -Dpassword=0DTH@nksun4nd4r'
+                sh 'mvn release:perform'
             }
         }
     }
