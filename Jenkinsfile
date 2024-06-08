@@ -16,6 +16,11 @@ pipeline {
                 git url: 'https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-maven-release.git', branch: 'master'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
         stage('Prepare Release') {
             steps {
                 sh 'mvn release:prepare -Dusername=klapertart -Dpassword=0DTH@nksun4nd4r'
