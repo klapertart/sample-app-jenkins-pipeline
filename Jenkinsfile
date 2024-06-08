@@ -37,7 +37,6 @@ pipeline {
                         """
                     }
                 }
-                //sh 'mvn release:prepare -Dusername=klapertart -Dpassword=0DTH@nksunandar'
             }
         }
         stage('Perform Release') {
