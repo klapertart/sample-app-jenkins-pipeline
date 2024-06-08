@@ -21,6 +21,12 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+        stage('Commit') {
+            steps {
+                sh 'git add .'
+                sh 'git commit -m "update changelog"'
+            }
+        }
         stage('Prepare Release') {
             steps {
                 sh 'mvn release:prepare'
