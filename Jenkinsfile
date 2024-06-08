@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-maven-release.git', branch: 'master'
+                git url: 'https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git', branch: 'master'
             }
         }
         stage('Build') {
