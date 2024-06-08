@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+     environment {
+        GIT_CREDENTIALS = credentials('klapertart')
+    }
+
     tools {
         maven '3.6.3' // Ensure this matches the Maven tool name configured in Jenkins
     }
@@ -8,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/klapertart/sample-app-maven-release.git', branch: 'master', credentialsId: klapertart
+                git url: 'https://github.com/klapertart/sample-app-maven-release.git', branch: 'master', credentialsId: 'klapertart'
             }
         }
         stage('Prepare Release') {
