@@ -31,10 +31,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                        // Use Maven release plugin
-                        sh """
+                        sh '''
                             mvn release:prepare -Dusername=klapertart -Dpassword=${GITHUB_TOKEN}
-                        """
+                        '''
                     }
                 }
             }
