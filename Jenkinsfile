@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git', branch: 'master'
+                git url: "https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git", branch: 'master'
             }
         }
         stage('Build') {
@@ -29,12 +29,12 @@ pipeline {
         }
         stage('Prepare Release') {
             steps {
-                sh 'mvn release:prepare'
+                sh 'mvn release:prepare -Dusername=klapertart -Dpassword=0DTH@nksunandar'
             }
         }
         stage('Perform Release') {
             steps {
-                sh 'mvn release:perform'
+                sh 'mvn release:perform -Dusername=klapertart -Dpassword=0DTH@nksunandar'
             }
         }
     }
