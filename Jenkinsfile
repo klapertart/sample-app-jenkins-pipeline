@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Perform Release') {
             steps {
-                sh 'mvn release:perform -Dusername=klapertart -Dpassword=0DTH@nksunandar'
+                sh 'mvn release:perform'
             }
         }
         stage('Genereate Changelog') {
