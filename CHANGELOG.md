@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.18](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.18) (2024-06-09)
+
+
+
+
+
+
+### Chores
+
+-  bump to 0.0.18-SNAPSHOT ([df7b7369841ce55](https://github.com/klapertart/sample-app-maven-release/commit//df7b7369841ce55))
+-  add docker file ([484e141fb47deca](https://github.com/klapertart/sample-app-maven-release/commit//484e141fb47deca))
+
+### Docs
+
+-  update changelog ([76e0a64146cbf95](https://github.com/klapertart/sample-app-maven-release/commit//76e0a64146cbf95))
+
+
 ## [0.0.17](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.17) (2024-06-09)
 
 
