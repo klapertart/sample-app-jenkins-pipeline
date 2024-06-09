@@ -3,7 +3,9 @@ pipeline {
 
     environment {
             GITHUB_TOKEN = credentials('github-token')
-        }
+            IMAGE_NAME = "${env.JOB_NAME}"
+            TAG = "${env.TAG_NAME}"
+            }
 
     tools {
         maven '3.6.3' // Ensure this matches the Maven tool name configured in Jenkins
@@ -47,6 +49,13 @@ pipeline {
                             git push origin master
                         '''
                     }
+                }
+            }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    docker.build("${env.IMAGE_NAME}:${env.TAG}")
                 }
             }
         }
