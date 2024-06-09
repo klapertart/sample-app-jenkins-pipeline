@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.16](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.16) (2024-06-09)
+
+
+
+
+
+
+### Chores
+
+-  bump to 0.0.16-SNAPSHOT ([05e0591fbd4bc0f](https://github.com/klapertart/sample-app-maven-release/commit//05e0591fbd4bc0f))
+-  add build docker script on jenkins file ([92fb91d61a1c77e](https://github.com/klapertart/sample-app-maven-release/commit//92fb91d61a1c77e))
+
+### Docs
+
+-  update changelog ([836b1596014806f](https://github.com/klapertart/sample-app-maven-release/commit//836b1596014806f))
+
+
 ## [0.0.15](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.15) (2024-06-09)
 
 
