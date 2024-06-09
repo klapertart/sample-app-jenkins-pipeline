@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.0.15](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.15) (2024-06-09)
+
+
+
+
+
+
+### Chores
+
+-  bump to 0.0.15-SNAPSHOT ([ab1377b97d39e2d](https://github.com/klapertart/sample-app-maven-release/commit//ab1377b97d39e2d))
+
+### Docs
+
+-  update changelog ([18a822b37ec2233](https://github.com/klapertart/sample-app-maven-release/commit//18a822b37ec2233))
+
+
 ## [0.0.14](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.14) (2024-06-09)
 
 
