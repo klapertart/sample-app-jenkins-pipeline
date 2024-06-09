@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-            // This will fetch the GitHub token from Jenkins credentials
             GITHUB_TOKEN = credentials('github-token')
         }
 
@@ -21,18 +20,12 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-//         stage('Commit') {
-//             steps {
-//                 sh 'git add .'
-//                 sh 'git commit -m "update changelog"'
-//             }
-//         }
         stage('Prepare Release') {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh '''
-                            mvn release:prepare -Dusername=klapertart -Dpassword=${GITHUB_TOKEN}
+                            mvn release:clean release:prepare -Dusername=klapertart -Dpassword=${GITHUB_TOKEN}
                         '''
                     }
                 }
@@ -59,116 +52,3 @@ pipeline {
         }
     }
 }
-
-
-// pipeline{
-//     agent any
-//     environment{
-//         AUTHOR = "Otong Sunandar"
-//         APP = credentials("otong123")
-//     }
-//
-// //     triggers{
-// //         cron("* */1 * * *")
-// //         //pollSCM("*/5 * * * *")
-// //     }
-//
-//     parameters{
-//         string(name: "NAME", defaultValue: "Guest", description: "What is your name")
-//         text(name: "DESCRIPTION", defaultValue: "Guest", description: "Tell me about you")
-//         booleanParam(name: "DEPLOY", defaultValue: "false", description: "Need to Deploy?")
-//         choice(name: "SOCIAL_MEDIA", choices: ["Instagram", "Facebook", "Twitter"], description: "Which social media do youe have?")
-//         password(name: "SECRET", defaultValue: "", description: "Encrypt Key")
-//     }
-//
-//     stages{
-//
-//         stage("Preparation"){
-//             stages{
-//                 stage("Prepare Jave"){
-//                     steps{
-//                         echo "Prepare Jave"
-//                     }
-//                 }
-//                 stage("Prepare Maven"){
-//                     steps{
-//                         echo "Prepare Maven"
-//                     }
-//                 }
-//             }
-//         }
-//
-//         stage("Params"){
-//             steps{
-//                 echo "Hello: ${params.NAME}"
-//                 echo "Description: ${params.DESCRIPTION}"
-//                 echo "Deploy: ${params.DEPLOY}"
-//                 echo "Social Media: ${params.SOCIAL_MEDIA}"
-//                 echo "Secret: ${params.SECRET}"
-//             }
-//         }
-//         stage("Prepare"){
-//             steps{
-//                 echo "Author: ${AUTHOR}"
-//                 echo "App User: ${APP_USR}"
-//                 echo "App Password: ${APP_PSW}"
-//                 echo "Start Job: ${env.JOB_NAME}"
-//                 echo "Start Build: ${env.BUILD_NUMBER}"
-//                 echo "Branch Name: ${env.BRANCH_NAME}"
-//             }
-//         }
-//         stage("Build"){
-//             steps{
-//                 echo "start build"
-//                 sh("chmod +x mvnw")
-//                 sh("./mvnw clean compile test-compile")
-//             }
-//         }
-//         stage("Test"){
-//             steps{
-//                 echo "stage test"
-//             }
-//         }
-//         stage("Deploy"){
-//             input{
-//                 message "Can we deploy?"
-//                 ok "Yes, of course"
-//                 submitter "klapertart"
-//                 parameters{
-//                     choice(name: "TARGET_ENV", choices: ["DEV", "QA", "PROD"], description: "Which environment?")
-//                 }
-//             }
-//             steps{
-//                 echo "stage deploy"
-//                 echo "Deploy to ${TARGET_ENV}"
-//             }
-//         }
-//
-//         stage("Release"){
-//             when{
-//                 expression{
-//                     return params.DEPLOY
-//                 }
-//             }
-//
-//             steps{
-//                 echo "Release it"
-//             }
-//         }
-//     }
-//
-//     post{
-//         always{
-//             echo "i will always run"
-//         }
-//         success{
-//             echo "yes, success"
-//         }
-//         failure{
-//             echo "oh no, failure"
-//         }
-//         cleanup{
-//             echo "dont care, success or failure"
-//         }
-//     }
-// }
