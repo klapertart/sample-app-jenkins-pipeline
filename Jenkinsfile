@@ -4,11 +4,16 @@ pipeline {
     environment {
             GITHUB_TOKEN = credentials('github-token')
             IMAGE_NAME = "${env.JOB_NAME}"
-            TAG = "${env.TAG_NAME}"
             }
 
+    options {
+        // Set log rotation to keep the last 10 builds and discard older ones
+        buildDiscarder(logRotator(numToKeepStr: '1', daysToKeepStr: '1'))
+    }
+
     tools {
-        maven '3.6.3' // Ensure this matches the Maven tool name configured in Jenkins
+        // Ensure this matches the Maven tool name configured in Jenkins
+        maven '3.6.3'
     }
 
     stages {
