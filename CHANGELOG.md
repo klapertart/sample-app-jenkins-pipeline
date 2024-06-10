@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.21](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.21) (2024-06-10)
+
+
+
+
+
+
+### Chores
+
+-  bump to 0.0.21-SNAPSHOT ([3b43a45d91abf67](https://github.com/klapertart/sample-app-maven-release/commit//3b43a45d91abf67))
+-  add log rotation config on jenkins file ([a8c6327ee17020e](https://github.com/klapertart/sample-app-maven-release/commit//a8c6327ee17020e))
+
+### Docs
+
+-  update changelog ([f951957d9d3d3e4](https://github.com/klapertart/sample-app-maven-release/commit//f951957d9d3d3e4))
+
+
 ## [0.0.20](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.20) (2024-06-10)
 
 
