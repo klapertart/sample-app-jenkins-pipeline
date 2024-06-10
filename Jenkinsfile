@@ -71,13 +71,4 @@ pipeline {
             }
         }
     }
-
-   post {
-        always {
-            // Clean up unused Docker images to save space
-            script {
-                sh 'docker system prune -af'
-            }
-        }
-    }
 }
