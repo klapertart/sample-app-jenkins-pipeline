@@ -52,11 +52,31 @@ pipeline {
                 }
             }
         }
+        stage('Get Git Tag') {
+            steps {
+                script {
+                    // Get the latest Git tag
+                    env.GIT_TAG = sh(script: "git describe --tags --abbrev=0", returnStdout: true).trim()
+                    // Alternatively, to get the most recent tag reachable from the current commit:
+                    // env.GIT_TAG = sh(script: "git describe --tags --always", returnStdout: true).trim()
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${env.IMAGE_NAME}:${env.TAG}")
+                    docker.build("${env.IMAGE_NAME}:${env.GIT_TAG}")
                 }
+            }
+        }
+    }
+
+   post {
+        always {
+            // Clean up unused Docker images to save space
+            script {
+                sh 'docker system prune -af'
             }
         }
     }
