@@ -17,6 +17,24 @@ pipeline {
     }
 
     stages {
+        stage('Build Master'){
+            when {
+                branch 'master'
+            }
+            steps{
+                echo "Build Master"
+            }
+        }
+
+        stage('Build Prod'){
+            when {
+                branch 'prod'
+            }
+            steps{
+                echo "Build Prod"
+            }
+        }
+/*
         stage('Checkout') {
             steps {
                 git url: "https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git", branch: 'master'
@@ -27,6 +45,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+
         stage('Prepare Release') {
             steps {
                 script {
@@ -76,4 +95,5 @@ pipeline {
             }
         }
     }
+ */
 }
