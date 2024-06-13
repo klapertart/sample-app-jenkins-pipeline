@@ -80,6 +80,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
+                    sh "docker tag ${env.IMAGE_NAME}:${env.GIT_TAG} localhost:5000/${env.IMAGE_NAME}:${env.GIT_TAG}"
                     sh "docker push ${env.IMAGE_NAME}:${env.GIT_TAG}"
                 }
             }
