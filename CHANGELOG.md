@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.0.22](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.22) (2024-06-13)
+
+
+
+
+
+
+### Chores
+
+-  update jenskin file ([4f8be3d50323537](https://github.com/klapertart/sample-app-maven-release/commit//4f8be3d50323537))
+
+### Docs
+
+-  update changelog ([31c2e6b2c062e91](https://github.com/klapertart/sample-app-maven-release/commit//31c2e6b2c062e91))
+
+
 ## [0.0.21](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.21) (2024-06-10)
 
 
