@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.0.24](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.24) (2024-06-13)
+
+
+
+
+
+
+### Chores
+
+-  bump to 0.0.24-SNAPSHOT ([39a4af83ac497e5](https://github.com/klapertart/sample-app-maven-release/commit//39a4af83ac497e5))
+-  update jenkins file ([bffb956e6d54236](https://github.com/klapertart/sample-app-maven-release/commit//bffb956e6d54236))
+
+### Docs
+
+-  update changelog ([04304404ecba722](https://github.com/klapertart/sample-app-maven-release/commit//04304404ecba722))
+
+
 ## [0.0.23](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.23) (2024-06-13)
 
 
