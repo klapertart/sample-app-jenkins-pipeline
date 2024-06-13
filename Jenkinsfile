@@ -17,24 +17,6 @@ pipeline {
     }
 
     stages {
-        stage('Build Master'){
-            when {
-                branch 'master'
-            }
-            steps{
-                echo "Build Master"
-            }
-        }
-
-        stage('Build Prod'){
-            when {
-                branch 'prod'
-            }
-            steps{
-                echo "Build Prod"
-            }
-        }
-/*
         stage('Checkout') {
             steps {
                 git url: "https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git", branch: 'master'
@@ -94,6 +76,14 @@ pipeline {
                 }
             }
         }
- */
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    sh "docker push ${env.IMAGE_NAME}:${env.GIT_TAG}"
+                }
+            }
+        }
+
     }
 }
