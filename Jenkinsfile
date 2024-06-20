@@ -2,8 +2,6 @@ pipeline {
     agent any
 
     environment {
-            DOCKER_USERNAME = ""
-            DOCKER_PASSWORD = ""
             GITHUB_TOKEN = credentials('github-token')
             IMAGE_NAME = "${env.JOB_NAME}"
             }
@@ -82,8 +80,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    withEnv(['DOCKER_USERNAME', 'DOCKER_PASSWORD']) {
-                        // Log in to Docker Hub
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {                        // Log in to Docker Hub
                         sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
 
                         // Push the Docker image to the registry
