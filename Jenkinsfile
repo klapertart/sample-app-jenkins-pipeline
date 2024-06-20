@@ -4,6 +4,7 @@ pipeline {
     environment {
             GITHUB_TOKEN = credentials('github-token')
             IMAGE_NAME = "${env.JOB_NAME}"
+            DOCKER_REGISTRY_URL = 'localhost:5000'  // Replace with your local Docker registry URL
             }
 
     options {
@@ -69,6 +70,7 @@ pipeline {
             }
         }
 
+/*
         stage('Build Docker Image') {
             steps {
                 script {
@@ -76,18 +78,22 @@ pipeline {
                 }
             }
         }
+ */
 
         stage('Push Docker Image') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {                        // Log in to Docker Hub
-                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin"
+                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin ${env.DOCKER_REGISTRY_URL}"
 
-                        // Push the Docker image to the registry
-                         sh "docker push ${env.IMAGE_NAME}:${env.GIT_TAG}"
+                        // Tag the Docker image for the local registry
+                        sh "docker tag ${env.IMAGE_NAME}:${env.GIT_TAG} ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}:${env.GIT_TAG}"
 
-                        // Log out from Docker Hub
-                        sh "docker logout"
+                        // Push the Docker image to the local registry
+                        sh "docker push ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}:${env.GIT_TAG}"
+
+                        // Log out from the local Docker registry
+                        sh "docker logout ${env.DOCKER_REGISTRY_URL}"
                     }
                 }
             }
