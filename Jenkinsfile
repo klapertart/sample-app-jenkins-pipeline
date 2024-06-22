@@ -28,10 +28,21 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Commit Changelog') {
+        stage('Check for Changes') {
             steps {
-                sh 'git add .'
-                sh 'git commit -m "update"'
+                script {
+                    // Execute git diff command to check for changes
+                    def gitChanges = sh(returnStdout: true, script: 'git diff --exit-code')
+                    if (gitChanges.trim().isEmpty()) {
+                        echo "No changes in the working directory."
+                    } else {
+                        echo "Changes detected in the working directory."
+                        echo "Changes:\n${gitChanges}"
+                        sh 'git add .'
+                        sh 'git commit -m "update"'
+                    }
+                }
+
             }
         }
         stage('Prepare Release') {
