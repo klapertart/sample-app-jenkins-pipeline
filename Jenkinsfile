@@ -3,8 +3,8 @@ pipeline {
 
     environment {
             GITHUB_TOKEN = credentials('github-token')
-            IMAGE_NAME = "${env.JOB_NAME}"
-            DOCKER_REGISTRY_URL = 'localhost:80'  // Replace with your local Docker registry URL
+            IMAGE_NAME = "app-pipeline-multibranch"
+            DOCKER_REGISTRY_URL = 'localhost:80'
             }
 
     options {
