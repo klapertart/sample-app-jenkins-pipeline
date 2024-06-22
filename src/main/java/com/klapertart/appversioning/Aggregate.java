@@ -26,5 +26,6 @@ public class Aggregate {
         return (val1-val2);
     }
 
+    // add fitur 1
 
 }
