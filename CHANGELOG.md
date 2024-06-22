@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.36-DEV](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.36-DEV) (2024-06-22)
+
+
+
+
+
+
+
+### Docs
+
+-  update changelog ([4fd0d042d315dd5](https://github.com/klapertart/sample-app-maven-release/commit//4fd0d042d315dd5))
+
+
 ## [0.0.35-DEV](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.35-DEV) (2024-06-22)
 
 
