@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.1-RELEASE](https://github.com/klapertart/sample-app-maven-release/releases/tag/1.0.1-RELEASE) (2024-06-22)
+
+
+
+### Features
+
+-  add fitur 1 ([71af492e43f0f0b](https://github.com/klapertart/sample-app-maven-release/commit//71af492e43f0f0b))
+
+
+
+### Chores
+
+-  bump to 1.0.1 ([cbcb294deffea01](https://github.com/klapertart/sample-app-maven-release/commit//cbcb294deffea01))
+
+### Docs
+
+-  update changelog ([8f2a21b7e29297a](https://github.com/klapertart/sample-app-maven-release/commit//8f2a21b7e29297a))
+-  update changelog ([4fd0d042d315dd5](https://github.com/klapertart/sample-app-maven-release/commit//4fd0d042d315dd5))
+-  update changelog ([fa8062657f9d421](https://github.com/klapertart/sample-app-maven-release/commit//fa8062657f9d421))
+
+
 ## [1.0.0-RELEASE](https://github.com/klapertart/sample-app-maven-release/releases/tag/1.0.0-RELEASE) (2024-06-22)
 
 
