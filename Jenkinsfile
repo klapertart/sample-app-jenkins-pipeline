@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: "https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git", branch: 'master'
+                git url: "https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git", branch: 'prod'
             }
         }
         stage('Build') {
@@ -53,7 +53,7 @@ pipeline {
                             mvn generate-resources
                             git add .
                             git commit -m "docs: update changelog"
-                            git push origin master
+                            git push origin prod
                         '''
                     }
                 }

@@ -9,13 +9,13 @@
 	</parent>
 	<groupId>com.klapertart</groupId>
 	<artifactId>sample-app-versioning</artifactId>
-	<version>0.0.34-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>sample-app-versioning</name>
 	<description>Sample App Versioning</description>
 
 	<properties>
 		<java.version>11</java.version>
-		<version.suffix>DEV</version.suffix>
+		<version.suffix>RELEASE</version.suffix>
 	</properties>
 
 	<dependencies>
@@ -64,7 +64,7 @@
 							<goal>git-changelog</goal>
 						</goals>
 						<configuration>
-							<ignoreTagsIfNameMatches>.*-RELEASE$</ignoreTagsIfNameMatches>
+							<ignoreTagsIfNameMatches>.*-DEV$</ignoreTagsIfNameMatches>
 							<templateContent>
 								<![CDATA[
 # Changelog
@@ -167,7 +167,7 @@
 		<url>https://github.com/klapertart/sample-app-jenkins-pipeline.git</url> <!-- URL HTTP de clone do projeto -->
 		<connection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</connection> <!-- URL HTTP de clone do projeto -->
 		<developerConnection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</developerConnection> <!-- URL HTTP de clone do projeto -->
-		<tag>0.0.33-DEV</tag>
+		<tag>@{project.version}</tag>
 	</scm>
 
 
