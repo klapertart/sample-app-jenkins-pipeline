@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.klapertart</groupId>
 	<artifactId>sample-app-versioning</artifactId>
-	<version>3.0.0-SNAPSHOT</version>
+	<version>3.0.0</version>
 	<name>sample-app-versioning</name>
 	<description>Sample App Versioning</description>
 
