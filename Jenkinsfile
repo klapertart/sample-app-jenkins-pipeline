@@ -44,6 +44,31 @@ pipeline {
                 }
             }
         }
+
+        stage('Check Latest Tag') {
+            steps {
+                script {
+                    def lastTag = sh(script: "git describe --tags `git rev-list --tags --max-count=1` || echo ''", returnStdout: true).trim()
+                    if (lastTag) {
+                        echo "Latest tag found: ${lastTag}"
+                        env.LAST_TAG = lastTag
+                    } else {
+                        echo "No tags found in the repository."
+                        env.LAST_TAG = ''
+                    }
+                }
+            }
+        }
+        stage('Get Project Version') {
+            steps {
+                script {
+                    def projectVersion = sh(script: "mvn help:evaluate -Dexpression=project.version -q -DforceStdout", returnStdout: true).trim()
+                    echo "Project version: ${projectVersion}"
+                    env.PROJECT_VERSION = projectVersion
+                }
+            }
+        }
+
         stage('Prepare Release') {
             steps {
                 script {
@@ -63,13 +88,17 @@ pipeline {
         stage('Genereate Changelog') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                        sh '''
-                            mvn generate-resources
-                            git add .
-                            git commit -m "docs: update changelog"
-                            git push origin prod
-                        '''
+                    if (env.LAST_TAG == '' || env.LAST_TAG != "v${env.PROJECT_VERSION}") {
+                        withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                            sh '''
+                                mvn generate-resources
+                                git add .
+                                git commit -m "docs: update changelog"
+                                git push origin prod
+                            '''
+                        }
+                    }else{
+                        echo "The latest tag matches the project version. Skipping Maven release."
                     }
                 }
             }
@@ -88,7 +117,11 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build("${env.IMAGE_NAME}:${env.GIT_TAG}")
+                    if (env.LAST_TAG == '' || env.LAST_TAG != "v${env.PROJECT_VERSION}") {
+                        docker.build("${env.IMAGE_NAME}:${env.GIT_TAG}")
+                    }else{
+                        echo "The latest tag matches the project version. Skipping build docker image."
+                    }
                 }
             }
         }
@@ -96,17 +129,21 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {                        // Log in to Docker Hub
-                        sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin ${env.DOCKER_REGISTRY_URL}"
+                    if (env.LAST_TAG == '' || env.LAST_TAG != "v${env.PROJECT_VERSION}") {
+                        withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {                        // Log in to Docker Hub
+                            sh "echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin ${env.DOCKER_REGISTRY_URL}"
 
-                        // Tag the Docker image for the local registry
-                        sh "docker tag ${env.IMAGE_NAME}:${env.GIT_TAG} ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}:${env.GIT_TAG}"
+                            // Tag the Docker image for the local registry
+                            sh "docker tag ${env.IMAGE_NAME}:${env.GIT_TAG} ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}:${env.GIT_TAG}"
 
-                        // Push the Docker image to the local registry
-                        sh "docker push ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}:${env.GIT_TAG}"
+                            // Push the Docker image to the local registry
+                            sh "docker push ${env.DOCKER_REGISTRY_URL}/${env.IMAGE_NAME}:${env.GIT_TAG}"
 
-                        // Log out from the local Docker registry
-                        sh "docker logout ${env.DOCKER_REGISTRY_URL}"
+                            // Log out from the local Docker registry
+                            sh "docker logout ${env.DOCKER_REGISTRY_URL}"
+                        }
+                    }else{
+                        echo "The latest tag matches the project version. Skipping build docker image."
                     }
                 }
             }
