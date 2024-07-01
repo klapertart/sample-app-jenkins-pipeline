@@ -101,17 +101,13 @@ pipeline {
             }
             steps {
                 script {
-                    if (env.LAST_TAG == '' || env.LAST_TAG != "v${env.PROJECT_VERSION}") {
-                        withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                            sh '''
-                                mvn generate-resources
-                                git add .
-                                git commit -m "docs: update changelog"
-                                git push origin prod
-                            '''
-                        }
-                    }else{
-                        echo "The latest tag matches the project version. Skipping Maven release."
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
+                        sh '''
+                            mvn generate-resources
+                            git add .
+                            git commit -m "docs: update changelog"
+                            git push origin prod
+                        '''
                     }
                 }
             }
