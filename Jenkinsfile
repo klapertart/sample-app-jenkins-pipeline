@@ -42,7 +42,6 @@ pipeline {
                         sh 'git commit -m "update"'
                     }
                 }
-
             }
         }
         stage('Prepare Release') {
@@ -109,6 +108,14 @@ pipeline {
                         // Log out from the local Docker registry
                         sh "docker logout ${env.DOCKER_REGISTRY_URL}"
                     }
+                }
+            }
+        }
+
+        stage('Cleanup Unused Docker Images') {
+            steps {
+                script {
+                    sh 'docker image prune -f'
                 }
             }
         }
