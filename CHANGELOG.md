@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.1-RELEASE](https://github.com/klapertart/sample-app-maven-release/releases/tag/2.0.1-RELEASE) (2024-07-01)
+
+
+
+
+
+
+
+### Docs
+
+-  update changelog ([a9afbda678405b3](https://github.com/klapertart/sample-app-maven-release/commit//a9afbda678405b3))
+
+
 ## [2.0.0-RELEASE](https://github.com/klapertart/sample-app-maven-release/releases/tag/2.0.0-RELEASE) (2024-06-25)
 
 
