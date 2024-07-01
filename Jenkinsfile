@@ -5,6 +5,7 @@ pipeline {
             GITHUB_TOKEN = credentials('github-token')
             IMAGE_NAME = "app-pipeline-multibranch"
             DOCKER_REGISTRY_URL = 'localhost:80'
+            VERSION_RELEASE = '-RELEASE'
             }
 
     options {
@@ -45,31 +46,37 @@ pipeline {
             }
         }
 
-        stage('Check Latest Tag') {
-            steps {
-                script {
-                    def lastTag = sh(script: "git describe --tags `git rev-list --tags --max-count=1` || echo ''", returnStdout: true).trim()
-                    if (lastTag) {
-                        echo "Latest tag found: ${lastTag}"
-                        env.LAST_TAG = lastTag
-                    } else {
-                        echo "No tags found in the repository."
-                        env.LAST_TAG = ''
-                    }
-                }
-            }
-        }
         stage('Get Project Version') {
             steps {
                 script {
                     def projectVersion = sh(script: "mvn help:evaluate -Dexpression=project.version -q -DforceStdout", returnStdout: true).trim()
                     echo "Project version: ${projectVersion}"
-                    env.PROJECT_VERSION = projectVersion
+                    def splitVersion = lastTag.split('-')
+                    env.TAG_TO_CHECK = splitVersion[0] + env.VERSION_RELEASE
+                }
+            }
+        }
+
+        stage('Check Tag Existence') {
+            steps {
+                script {
+                    def tagExists = sh(script: "git tag -l ${TAG_TO_CHECK}", returnStdout: true).trim()
+                    if (tagExists) {
+                        echo "Tag ${TAG_TO_CHECK} exists."
+                        // You can set an environment variable or take other actions here
+                        env.TAG_EXISTS = 'true'
+                    } else {
+                        echo "Tag ${TAG_TO_CHECK} does not exist."
+                        env.TAG_EXISTS = 'false'
+                    }
                 }
             }
         }
 
         stage('Prepare Release') {
+            when {
+                expression { env.TAG_EXISTS == 'true' }
+            }
             steps {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
@@ -81,11 +88,17 @@ pipeline {
             }
         }
         stage('Perform Release') {
+            when {
+                expression { env.TAG_EXISTS == 'true' }
+            }
             steps {
                 sh 'mvn release:perform'
             }
         }
         stage('Genereate Changelog') {
+            when {
+                expression { env.TAG_EXISTS == 'true' }
+            }
             steps {
                 script {
                     if (env.LAST_TAG == '' || env.LAST_TAG != "v${env.PROJECT_VERSION}") {
@@ -104,6 +117,9 @@ pipeline {
             }
         }
         stage('Get Git Tag') {
+            when {
+                expression { env.TAG_EXISTS == 'true' }
+            }
             steps {
                 script {
                     // Get the latest Git tag
@@ -115,6 +131,9 @@ pipeline {
         }
 
         stage('Build Docker Image') {
+            when {
+                expression { env.TAG_EXISTS == 'true' }
+            }
             steps {
                 script {
                     if (env.LAST_TAG == '' || env.LAST_TAG != "v${env.PROJECT_VERSION}") {
@@ -127,6 +146,9 @@ pipeline {
         }
 
         stage('Push Docker Image') {
+            when {
+                expression { env.TAG_EXISTS == 'true' }
+            }
             steps {
                 script {
                     if (env.LAST_TAG == '' || env.LAST_TAG != "v${env.PROJECT_VERSION}") {
