@@ -75,7 +75,7 @@ pipeline {
 
         stage('Prepare Release') {
             when {
-                expression { env.TAG_EXISTS == 'true' }
+                expression { env.TAG_EXISTS == 'false' }
             }
             steps {
                 script {
@@ -89,7 +89,7 @@ pipeline {
         }
         stage('Perform Release') {
             when {
-                expression { env.TAG_EXISTS == 'true' }
+                expression { env.TAG_EXISTS == 'false' }
             }
             steps {
                 sh 'mvn release:perform'
@@ -97,7 +97,7 @@ pipeline {
         }
         stage('Genereate Changelog') {
             when {
-                expression { env.TAG_EXISTS == 'true' }
+                expression { env.TAG_EXISTS == 'false' }
             }
             steps {
                 script {
@@ -114,7 +114,7 @@ pipeline {
         }
         stage('Get Git Tag') {
             when {
-                expression { env.TAG_EXISTS == 'true' }
+                expression { env.TAG_EXISTS == 'false' }
             }
             steps {
                 script {
@@ -128,7 +128,7 @@ pipeline {
 
         stage('Build Docker Image') {
             when {
-                expression { env.TAG_EXISTS == 'true' }
+                expression { env.TAG_EXISTS == 'false' }
             }
             steps {
                 script {
@@ -143,7 +143,7 @@ pipeline {
 
         stage('Push Docker Image') {
             when {
-                expression { env.TAG_EXISTS == 'true' }
+                expression { env.TAG_EXISTS == 'false' }
             }
             steps {
                 script {
