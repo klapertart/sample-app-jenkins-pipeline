@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.klapertart</groupId>
 	<artifactId>sample-app-versioning</artifactId>
-	<version>2.0.1</version>
+	<version>2.0.1-SNAPSHOT</version>
 	<name>sample-app-versioning</name>
 	<description>Sample App Versioning</description>
 
@@ -167,7 +167,7 @@
 		<url>https://github.com/klapertart/sample-app-jenkins-pipeline.git</url> <!-- URL HTTP de clone do projeto -->
 		<connection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</connection> <!-- URL HTTP de clone do projeto -->
 		<developerConnection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</developerConnection> <!-- URL HTTP de clone do projeto -->
-		<tag>2.0.1-RELEASE</tag>
+		<tag>2.0.0-RELEASE</tag>
 	</scm>
 
 
