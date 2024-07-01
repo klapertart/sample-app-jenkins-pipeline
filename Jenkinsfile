@@ -51,7 +51,7 @@ pipeline {
                 script {
                     def projectVersion = sh(script: "mvn help:evaluate -Dexpression=project.version -q -DforceStdout", returnStdout: true).trim()
                     echo "Project version: ${projectVersion}"
-                    def splitVersion = lastTag.split('-')
+                    def splitVersion = projectVersion.split('-')
                     env.TAG_TO_CHECK = splitVersion[0] + env.VERSION_RELEASE
                 }
             }
