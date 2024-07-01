@@ -179,10 +179,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        cleanup {
-            cleanWs()
-        }
-    }
 }
