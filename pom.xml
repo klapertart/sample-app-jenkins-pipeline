@@ -174,7 +174,11 @@
 		<url>https://github.com/klapertart/sample-app-jenkins-pipeline.git</url> <!-- URL HTTP de clone do projeto -->
 		<connection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</connection> <!-- URL HTTP de clone do projeto -->
 		<developerConnection>scm:git:https://github.com/klapertart/sample-app-jenkins-pipeline.git</developerConnection> <!-- URL HTTP de clone do projeto -->
+<<<<<<< HEAD
 		<tag>@{project.version}</tag>
+=======
+		<tag>0.0.38-DEV</tag>
+>>>>>>> 055469cc2101c3f08d8f20fecc9f2eb0c3893c2d
 	</scm>
 
 
