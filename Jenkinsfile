@@ -7,6 +7,10 @@ pipeline {
             DOCKER_REGISTRY_URL = 'localhost:80'
             }
 
+    triggers {
+        pollSCM('H/5 * * * *') // Poll the SCM every 5 minutes
+    }
+
     options {
         // Set log rotation to keep the last 10 builds and discard older ones
         buildDiscarder(logRotator(numToKeepStr: '1', daysToKeepStr: '1'))
