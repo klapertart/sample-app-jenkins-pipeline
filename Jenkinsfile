@@ -32,12 +32,16 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
+
         stage('Check for Changes') {
             steps {
                 script {
-                    // Execute git diff command to check for changes
-                    def gitChanges = sh(returnStdout: true, script: 'git diff --exit-code')
-                    if (gitChanges.trim().isEmpty()) {
+                    // Run the git diff command and capture the exit code
+                    def gitStatus = sh(returnStatus: true, script: 'git diff --exit-code > diff.txt')
+                    def gitChanges = readFile('diff.txt').trim()
+
+                    // Check the exit code to determine if there are changes
+                    if (gitStatus == 0) {
                         echo "No changes in the working directory."
                     } else {
                         echo "Changes detected in the working directory."
@@ -46,9 +50,9 @@ pipeline {
                         sh 'git commit -m "update"'
                     }
                 }
-
             }
         }
+
         stage('Prepare Release') {
             steps {
                 script {
