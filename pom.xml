@@ -39,7 +39,7 @@
 		<dependency>
 			<groupId>com.klapertart</groupId>
 			<artifactId>sample-library</artifactId>
-			<version>0.0.2</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -164,6 +164,7 @@
 					</checkModificationExcludes>
 					<arguments>-Dmaven.test.skipTests=true -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dmaven.deploy.skip=true</arguments>
 					<updateWorkingCopyVersions>false</updateWorkingCopyVersions>
+					<allowTimestampedSnapshots>true</allowTimestampedSnapshots>
 				</configuration>
 			</plugin>
 
