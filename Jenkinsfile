@@ -4,7 +4,7 @@ pipeline {
     environment {
             GIT_USER_NAME = 'klapertart'
             GIT_USER_EMAIL = 'klapertartinc@gmail.com'
-            GIT_CREDENTIALS_ID = 'github-basicauth'
+            GITHUB_TOKEN = credentials('github-token')
             GIT_BRANCH = 'master'
             GIT_URL = 'https://github.com/klapertart/sample-app-jenkins-pipeline.git'
             DOCKER_IMAGE_NAME = "app-pipeline-multibranch"
@@ -30,7 +30,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo "Branch to checkout: ${GIT_BRANCH}"
-                git credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_URL}", branch: "${GIT_BRANCH}"
+                git url: "https://klapertart:${GITHUB_TOKEN}@github.com/klapertart/sample-app-jenkins-pipeline.git", branch: "${GIT_BRANCH}"
             }
         }
 
@@ -96,16 +96,15 @@ pipeline {
             }
         }
 
-
         stage('Prepare Release') {
             when {
                 expression { env.TAG_EXISTS == 'false' }
             }
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS_ID}", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh '''
-                            mvn release:clean release:prepare -Dusername=${GIT_USERNAME} -Dpassword=${GIT_PASSWORD}
+                            mvn release:clean release:prepare -Dusername=klapertart -Dpassword=${GITHUB_TOKEN}
                         '''
                     }
                 }
@@ -127,7 +126,7 @@ pipeline {
             }
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS_ID}", passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh '''
                             mvn generate-resources
                             git add .
