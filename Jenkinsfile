@@ -156,7 +156,7 @@ pipeline {
             }
             steps{
                 script {
-                    docker.withRegistry("${DOCKER_REGISTRY_URL}", "dockerhub-credentials") {
+                    docker.withRegistry("http://${DOCKER_REGISTRY_URL}", "dockerhub-credentials") {
                         docker.build("${DOCKER_IMAGE_NAME}:${GIT_TAG}").push()
                     }
                 }
