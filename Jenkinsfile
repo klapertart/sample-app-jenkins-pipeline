@@ -4,7 +4,7 @@ pipeline {
     environment {
             GIT_USER_NAME = 'klapertart'
             GIT_USER_EMAIL = 'klapertartinc@gmail.com'
-            GIT_CREDENTIALS_ID = 'github-token'
+            GIT_CREDENTIALS_ID = 'github-basicauth'
             GIT_BRANCH = 'master'
             GIT_URL = 'https://github.com/klapertart/sample-app-jenkins-pipeline.git'
             DOCKER_IMAGE_NAME = "app-pipeline-multibranch"
