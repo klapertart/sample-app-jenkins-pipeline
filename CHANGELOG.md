@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.0.41-DEV](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.41-DEV) (2024-07-11)
+
+
+
+
+
+
+### Chores
+
+-  bump to 0.0.41 ([1ac92514b6c92db](https://github.com/klapertart/sample-app-maven-release/commit//1ac92514b6c92db))
+
+### Docs
+
+-  update changelog ([9925e37b8d6f007](https://github.com/klapertart/sample-app-maven-release/commit//9925e37b8d6f007))
+
+
 ## [0.0.40-DEV](https://github.com/klapertart/sample-app-maven-release/releases/tag/0.0.40-DEV) (2024-07-11)
 
 
