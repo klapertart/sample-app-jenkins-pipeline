@@ -16,6 +16,6 @@ import javax.annotation.PostConstruct;
 public class PrintLibraryConst {
     @PostConstruct
     public void printConst(){
-        log.info("CONST VERSI 2: ", Const.CONST_VERSI_002);
+        log.info("CONST ==> {}", Const.CONST_VERSI_002);
     }
 }
