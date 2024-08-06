@@ -10,4 +10,6 @@ public class SampleAppVersioningApplication {
 		SpringApplication.run(SampleAppVersioningApplication.class, args);
 	}
 
+	// fitur A
+
 }
